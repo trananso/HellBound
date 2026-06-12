@@ -485,7 +485,7 @@ class Label(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         
         # Sets the font and values
-        self.__font = pygame.font.Font("rez/ARCADECLASSIC.ttf", size)
+        self.__font = pygame.font.Font("rez/ARCADECLASSIC.TTF", size)
     
         # Sets the image attributes
         self.image = self.__font.render(message, 1, (255, 255, 255))
