@@ -22,7 +22,7 @@ screen = pygame.display.set_mode((920, 520))
 # Global variable of what the game is doing
 STATE = "intro"
 
-def intro():
+async def intro():
     '''This function displays the intro screen'''
     # Any reference to STATE refers to the global variable
     global STATE
@@ -88,8 +88,9 @@ def intro():
         allSprites.update()
         allSprites.draw(screen)
         pygame.display.flip()
+        await asyncio.sleep(0)
          
-def instructions():
+async def instructions():
     '''This function displays the instructions screen'''
     
     # Any reference to STATE will refer to the global variable
@@ -157,8 +158,9 @@ def instructions():
         allSprites.update()
         allSprites.draw(screen)
         pygame.display.flip()
+        await asyncio.sleep(0)
 
-def game():
+async def game():
     '''This function defines the game loop.'''
       
     global STATE
@@ -379,6 +381,7 @@ def game():
         allSprites.update()
         allSprites.draw(screen)
         pygame.display.flip()
+        await asyncio.sleep(0)
         
      
 # Call the main function
@@ -388,11 +391,11 @@ async def main():
     # Calls the other functions depending on what state the game is in.
     while playing:
         if STATE == "intro":
-            intro()
+            await intro()
         if STATE == "instructions":
-            instructions()
+            await instructions()
         if STATE == "play":
-            game()
+            await game()
         if STATE == "quit":
             playing = False
 
