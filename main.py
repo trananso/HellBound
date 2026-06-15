@@ -176,11 +176,11 @@ def game():
     pygame.mixer.music.play(-1)
     
     # Sound Effects
-    block = pygame.mixer.Sound("music/fx/block.wav")
+    block = pygame.mixer.Sound("music/fx/block.ogg")
     block.set_volume(0.5)
-    cut = pygame.mixer.Sound("music/fx/cut.wav")
+    cut = pygame.mixer.Sound("music/fx/cut.ogg")
     cut.set_volume(0.5)
-    fireball = pygame.mixer.Sound("music/fx/fireball.wav")
+    fireball = pygame.mixer.Sound("music/fx/fireball.ogg")
     fireball.set_volume(0.5)
 
     # Sprites    
