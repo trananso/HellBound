@@ -35,7 +35,7 @@ def intro():
     screen.blit(background, (0,0))
     
     # Background Music
-    pygame.mixer.music.load("music/background/intro.mp3")
+    pygame.mixer.music.load("music/background/intro.ogg")
     pygame.mixer.music.set_volume(0.3)
     pygame.mixer.music.play(-1)
     
@@ -171,7 +171,7 @@ def game():
     screen.blit(background, (0, 0))
     
     # Background Music
-    pygame.mixer.music.load("music/background/game.mp3")
+    pygame.mixer.music.load("music/background/game.ogg")
     pygame.mixer.music.set_volume(0.3)
     pygame.mixer.music.play(-1)
     
