@@ -12,7 +12,9 @@
 """
 
 # I - IMPORT AND INITIALIZE
+import asyncio
 import pygame, sprites
+
 pygame.init()
 pygame.mixer.init()
 screen = pygame.display.set_mode((920, 520)) 
@@ -380,7 +382,7 @@ def game():
         
      
 # Call the main function
-def main():
+async def main():
     '''This function defines the mainline logic for our game.'''
     playing = True
     # Calls the other functions depending on what state the game is in.
@@ -393,10 +395,13 @@ def main():
             game()
         if STATE == "quit":
             playing = False
+
+        await asyncio.sleep(0)
             
     # Unhide the mouse pointer
     pygame.mouse.set_visible(True)
     
     pygame.quit()
-main()
-    
+
+if __name__ == "__main__":
+    asyncio.run(main())
