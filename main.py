@@ -12,7 +12,7 @@
 """
 
 # I - IMPORT AND INITIALIZE
-import pygame, HellBoundSprites
+import pygame, sprites
 pygame.init()
 pygame.mixer.init()
 screen = pygame.display.set_mode((920, 520)) 
@@ -38,10 +38,10 @@ def intro():
     pygame.mixer.music.play(-1)
     
     # Sprites
-    title = HellBoundSprites.Label(460,50,75,"-+=Hellbound=+-","center")
-    play = HellBoundSprites.Label(460,350,40,"play","center")
-    instructions = HellBoundSprites.Label(460,400,40,"instructions","center")
-    pointer = HellBoundSprites.Point()
+    title = sprites.Label(460,50,75,"Hellbound","center")
+    play = sprites.Label(460,350,40,"play","center")
+    instructions = sprites.Label(460,400,40,"instructions","center")
+    pointer = sprites.Point()
     
     allSprites = pygame.sprite.OrderedUpdates(play,instructions,title,pointer)
     
@@ -101,10 +101,10 @@ def instructions():
     screen.blit(background, (0,0))
     
     # Sprites
-    title = HellBoundSprites.Label(460,30,40,"Help","center")
-    subtitle1 = HellBoundSprites.Label(200,60,30,"Player 1 Controls","center")
-    subtitle2 = HellBoundSprites.Label(720,60,30,"Player 2 Controls","center")
-    back = HellBoundSprites.Label(460,450,30,"Return","center")
+    title = sprites.Label(460,30,40,"Help","center")
+    subtitle1 = sprites.Label(200,60,30,"Player 1 Controls","center")
+    subtitle2 = sprites.Label(720,60,30,"Player 2 Controls","center")
+    back = sprites.Label(460,450,30,"Return","center")
     
     text1 = ("Player 1 uses", "W         Jump", "A         Left", "S         Crouch", "D         Right", "G         Sword Attack", "H         Fireball", "J         Defend")
     text2 = ("Player 2 uses", "UP        Jump", "LEFT      Left", "DOWN      Crouch", "RIGHT     Right", "COMMA     Sword Attack", "PERIOD     Fireball", "SLASH     Defend")
@@ -112,12 +112,12 @@ def instructions():
     paragraph2 = []
     
     for line in range(len(text1)):
-        paragraph1.append(HellBoundSprites.Label(63,30*line + 100,20,text1[line],"left"))
-        paragraph2.append(HellBoundSprites.Label(583,30*line + 100,20,text2[line],"left"))
+        paragraph1.append(sprites.Label(63,30*line + 100,20,text1[line],"left"))
+        paragraph2.append(sprites.Label(583,30*line + 100,20,text2[line],"left"))
         
     text = pygame.sprite.Group(title,subtitle1,subtitle2,paragraph1,paragraph2)
     
-    pointer = HellBoundSprites.Point()
+    pointer = sprites.Point()
     
     allSprites = pygame.sprite.Group(pointer,text,back)
     
@@ -192,22 +192,22 @@ def game():
         for digit in text:
             # If it is a 1, set a 30 by 1 platform
             if str(digit) == str(1):
-                platform.append(HellBoundSprites.Platform(x,y))
+                platform.append(sprites.Platform(x,y))
             x += 30
         y += 30
         x = 0
         
-    health1 = HellBoundSprites.HealthBar(screen,(screen.get_width()/5)*2,30,"right")
-    health2 = HellBoundSprites.HealthBar(screen,(screen.get_width()/5)*3,30,"left")
+    health1 = sprites.HealthBar(screen,(screen.get_width()/5)*2,30,"right")
+    health2 = sprites.HealthBar(screen,(screen.get_width()/5)*3,30,"left")
                 
     
     level = pygame.sprite.Group(platform)
     
-    player1 = HellBoundSprites.Player(screen,"1",screen.get_width()/5,0,"right",level)
-    player2 = HellBoundSprites.Player(screen,"2",screen.get_width()/5*4,0,"left",level)
+    player1 = sprites.Player(screen,"1",screen.get_width()/5,0,"right",level)
+    player2 = sprites.Player(screen,"2",screen.get_width()/5*4,0,"left",level)
     
-    endMessage1 = HellBoundSprites.Label(460,230,60,"Player 1 Wins!","center")
-    endMessage2 = HellBoundSprites.Label(460,230,60,"Player 2 Wins!","center")
+    endMessage1 = sprites.Label(460,230,60,"Player 1 Wins!","center")
+    endMessage2 = sprites.Label(460,230,60,"Player 2 Wins!","center")
     
     players = pygame.sprite.Group(player1,player2)
     proj1 = pygame.sprite.Group()
@@ -259,7 +259,7 @@ def game():
                 # Shoots a fireball if there isn't one on the screen
                 elif pressed[pygame.K_h]:
                     if len(proj1.sprites()) == 0: 
-                        projectile = HellBoundSprites.Projectile(screen,player1.get_projData())
+                        projectile = sprites.Projectile(screen,player1.get_projData())
                         allSprites.add(projectile)
                         proj1.add(projectile)
                         fireball.play()
@@ -308,7 +308,7 @@ def game():
                 # Shoots a fireball if there isn't one on the screen
                 elif pressed[pygame.K_PERIOD]:
                     if len(proj2.sprites()) == 0: 
-                        projectile = HellBoundSprites.Projectile(screen,player2.get_projData())
+                        projectile = sprites.Projectile(screen,player2.get_projData())
                         allSprites.add(projectile)
                         proj2.add(projectile)
                         fireball.play()
